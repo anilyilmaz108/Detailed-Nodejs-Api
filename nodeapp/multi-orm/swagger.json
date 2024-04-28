@@ -1,0 +1,718 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample full backend nodejs project. You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/). For this sample, you can use the api key `special-key` to test the authorization filters.",
+    "version": "1.0.6",
+    "title": "Swagger Nodeapp",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "anilyilmaz108@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "http://localhost:5004",
+  "basePath": "/swagger",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Everything about Users",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+        "name": "Socials",
+        "description": "Everything about Socials",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://swagger.io"
+        }
+      },
+      {
+        "name": "Auth",
+        "description": "Everything about Auth",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://swagger.io"
+        }
+      }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/createUser": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Post user's data",
+        "description": "",
+        "operationId": "createUser",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Returns a map of status codes to data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        },
+        "security": [
+            {
+              "api_key": []
+            }
+          ]
+    }
+      },
+      "/getAllUser": {
+        "get": {
+          "tags": ["Users"],
+          "summary": "Returns all users data",
+          "description": "Returns a map of status codes to data",
+          "operationId": "getAllUser",
+          "produces": ["application/json"],
+          "parameters": [
+          
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Users"
+                  }
+                }
+            },
+            "400": {
+                "description": "Invalid Order"
+              }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
+    "/getUserById/:userId": {
+        "get": {
+            "tags": ["Users"],
+            "summary": "Find user by ID",
+            "operationId": "getUserById",
+            "produces": ["application/json"],
+            "parameters": [
+              {
+                "name": "userId",
+                "in": "path",
+                "description": "ID of user that needs to be fetched",
+                "required": true,
+                "type": "integer",
+                "format": "int64"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "$ref": "#/definitions/Users"
+                }
+              },
+              "400": {
+                "description": "Invalid ID supplied"
+              },
+              "404": {
+                "description": "User not found"
+              }
+            },
+            "security": [
+                {
+                  "api_key": []
+                }
+              ]
+          }
+      },
+      "/deleteUser/:userId": {
+        "delete": {
+          "tags": ["Users"],
+          "summary": "Delete user by ID",
+          "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
+          "operationId": "deleteUser",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "description": "ID of the user that needs to be deleted",
+              "required": true,
+              "type": "integer",
+              "minimum": 1,
+              "format": "int64"
+            }
+          ],
+          "responses": {
+              "200": {
+              "description": "Success",
+              "schema": {
+                  "$ref": "#/definitions/Users"
+                  }
+              },
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "User not found"
+            }
+            
+          },
+          "security": [
+              {
+                "api_key": []
+              }
+            ]
+        }
+      },
+     "/createSocialById/:userId":{
+      "post": {
+        "tags": ["Socials"],
+        "summary": "Post data of socials",
+        "description": "",
+        "operationId": "createSocialById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Returns a map of status codes to data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Socials"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Socials"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        },
+        "security": [
+            {
+              "api_key": []
+            }
+          ]
+    }
+     },
+     "/getAllSocialById/:userId": {
+      "get": {
+        "tags": ["Socials"],
+        "summary": "Returns all socials data by User ID",
+        "description": "Returns a map of status codes to data",
+        "operationId": "getAllSocialById",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Returns a map of status codes to data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Socials"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Socials"
+                }
+              }
+          },
+          "400": {
+              "description": "Invalid Order"
+            }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/getAllSocial": {
+      "get": {
+        "tags": ["Socials"],
+        "summary": "Returns all socials data",
+        "description": "Returns a map of status codes to data",
+        "operationId": "getAllSocial",
+        "produces": ["application/json"],
+        "parameters": [
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Socials"
+                }
+              }
+          },
+          "400": {
+              "description": "Invalid Order"
+            }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/deleteSocialById/:userId/:socialId": {
+      "delete": {
+        "tags": ["Socials"],
+        "summary": "Delete social by User's ID",
+        "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
+        "operationId": "deleteSocialById",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of the user that needs to be deleted",
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "format": "int64"
+          },
+          {
+            "name": "socialId",
+            "in": "path",
+            "description": "ID of the user that needs to be deleted",
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+            "200": {
+            "description": "Success",
+            "schema": {
+                "$ref": "#/definitions/Socials"
+                }
+            },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Socials not found"
+          }
+          
+        },
+        "security": [
+            {
+              "api_key": []
+            }
+          ]
+      }
+    },
+    "/updateData/:userId/:socialId":{
+      "put": {
+        "tags": ["Socials"],
+        "summary": "Update social data",
+        "description": "Returns a map of status codes to data",
+        "operationId": "updateDataSocials",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of the user that needs to be deleted",
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "format": "int64"
+          },
+          {
+            "name": "socialId",
+            "in": "path",
+            "description": "ID of the social that needs to be deleted",
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Socials"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        },
+        "security": [
+            {
+              "api_key": []
+            }
+          ]
+    }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "login operation",
+        "description": "Returns a map of status codes to data",
+        "operationId": "login",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Returns a map of status codes to data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Auth"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Auth"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        },
+        "security": [
+            {
+              "api_key": []
+            }
+          ]
+    }
+      },
+      "/upload": {
+        "post": {
+          "tags": ["Auth"],
+          "summary": "File operation",
+          "description": "File operation by using Multer.",
+          "operationId": "upload",
+          "consumes": ["application/json"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Returns a map of status codes to data",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Auth"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "schema": {
+                "$ref": "#/definitions/Auth"
+              }
+            },
+            "400": {
+              "description": "Invalid Order"
+            }
+          },
+          "security": [
+              {
+                "api_key": []
+              }
+            ]
+      }
+        },
+        "/register": {
+          "post": {
+            "tags": ["Auth"],
+            "summary": "register operation",
+            "description": "Returns a map of status codes to data",
+            "operationId": "register",
+            "consumes": ["application/json"],
+            "produces": ["application/json"],
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "Returns a map of status codes to data",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/Auth"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Success",
+                "schema": {
+                  "$ref": "#/definitions/Auth"
+                }
+              },
+              "400": {
+                "description": "Invalid Order"
+              }
+            },
+            "security": [
+                {
+                  "api_key": []
+                }
+              ]
+        }
+          },
+          "/getUsersById/:userId": {
+            "get": {
+                "tags": ["Auth"],
+                "summary": "Find user by ID (Auth operation)",
+                "operationId": "getUsersById",
+                "description": "Returns a map of status codes to data",
+                "produces": ["application/json"],
+                "parameters": [
+                  {
+                    "name": "userId",
+                    "in": "path",
+                    "description": "ID of user that needs to be fetched",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "successful operation",
+                    "schema": {
+                      "$ref": "#/definitions/Auth"
+                    }
+                  },
+                  "400": {
+                    "description": "Invalid ID supplied"
+                  },
+                  "404": {
+                    "description": "User not found"
+                  }
+                },
+                "security": [
+                    {
+                      "api_key": []
+                    }
+                  ]
+              }
+          },
+          "/getUserByQuery": {
+            "get": {
+              "tags": ["Auth"],
+              "summary": "Returns user data (SQL operation)",
+              "description": "Returns a map of status codes to data",
+              "operationId": "getUserByQuery",
+              "produces": ["application/json"],
+              "parameters": [
+              
+              ],
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "schema": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Auth"
+                      }
+                    }
+                },
+                "400": {
+                    "description": "Invalid Order"
+                  }
+              },
+              "security": [
+                {
+                  "api_key": []
+                }
+              ]
+            }
+          },
+          "/sendmail": {
+            "post": {
+              "tags": ["Auth"],
+              "summary": "Send Email operation",
+              "description": "Returns a map of status codes to data",
+              "operationId": "sendmail",
+              "consumes": ["application/json"],
+              "produces": ["application/json"],
+              "parameters": [
+                {
+                  "in": "body",
+                  "name": "body",
+                  "description": "Returns a map of status codes to data",
+                  "required": true,
+                  "schema": {
+                    "$ref": "#/definitions/Auth"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "schema": {
+                    "$ref": "#/definitions/Auth"
+                  }
+                },
+                "400": {
+                  "description": "Invalid Order"
+                }
+              },
+              "security": [
+                  {
+                    "api_key": []
+                  }
+                ]
+          }
+            }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    },
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+      "flow": "implicit",
+      "scopes": {
+        "read:pets": "read your pets",
+        "write:pets": "modify pets in your account"
+      }
+    }
+  },
+  "definitions": {
+    "Users": {
+        "type": "object",
+        
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "username": {
+            "type": "string",
+            "example": "UserName"
+          },
+          "created_at": {
+            "type": "number",
+            "format": "date",
+            "example": "6/19/2015 5:35:50 PM"
+          },
+          "updated_at": {
+            "type": "number",
+            "format": "date",
+            "example": "6/19/2015 5:35:50 PM"
+          },
+          "version": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "xml": {
+          "name": "Users"
+        }
+      },
+      "Socials": {
+        "type": "object",
+        
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "user_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "social_media_name": {
+            "type": "string",
+            "example": "nametest"
+          },
+          "created_at": {
+            "type": "number",
+            "format": "date",
+            "example": "6/19/2015 5:35:50 PM"
+          },
+          "updated_at": {
+            "type": "number",
+            "format": "date",
+            "example": "6/19/2015 5:35:50 PM"
+          },
+          "version": {
+            "type": "integer",
+            "format": "int64"
+          }
+          
+         
+        },
+        "xml": {
+          "name": "Socials"
+        }
+      },
+      "Auth": {
+        "type": "object",
+        
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "xml": {
+          "name": "Auth"
+        }
+      }
+
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
+
+
+
