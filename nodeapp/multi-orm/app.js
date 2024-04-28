@@ -430,8 +430,8 @@ async function sendMail(user, callback) {
       //secure: false, // true for 465, false for other ports
       service: 'gmail',
       auth: {
-        user: "MAIL_HERE", //"anilyilmaz108@gmail.com",
-        pass: "PASSWORD_HERE" //"iekv bcrn xkpe pywy"
+        user: "MAIL_HERE", 
+        pass: "PASSWORD_HERE" 
       }
     });
     
